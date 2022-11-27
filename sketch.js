@@ -19,7 +19,7 @@ function setup() {
   c2x = w/2;
   c2y = h/2;
   
-  r = w/10;
+  r = w/4;
   
   score1y = h/10;
   score2y = 9*h/10;
