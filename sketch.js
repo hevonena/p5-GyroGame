@@ -19,7 +19,7 @@ function setup() {
   c2x = w/2;
   c2y = h/2;
   
-  r = w/10;
+  r = w/4;
   
   score1y = h/10;
   score2y = 9*h/10;
@@ -106,8 +106,8 @@ function draw() {
   
   
   // rotationX, rotationY
-  const dx = constrain(rotationY, -3, 3);
-  const dy = constrain(rotationX, -3, 3);
+  const dx = constrain(rotationY, -5, 5);
+  const dy = constrain(rotationX, -5, 5);
   c1x += dx*2;
   c1y += dy*2;
   c1x = constrain(c1x, 0, w);
