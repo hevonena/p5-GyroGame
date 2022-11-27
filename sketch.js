@@ -1,3 +1,5 @@
+var w = window.innerWidth;
+var h = window.innerHeight;  
 
 let permissionGranted = false;
 let c1x, c1y;
@@ -10,26 +12,26 @@ let target2x, target2y;
 let targetSize;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  canvas=createCanvas(w, h);
   
-  c1x = width/2;
-  c1y = height/2;
-  c2x = width/2;
-  c2y = height/2;
+  c1x = w/2;
+  c1y = h/2;
+  c2x = w/2;
+  c2y = h/2;
   
-  r = 50;
+  r = w/10;
   
-  score1y = height/50;
-  score2y = 49*height/50;
+  score1y = h/10;
+  score2y = 9*h/10;
   
   score1 = 0;
   score2 = 0;
   
-  target1x = random(width);
-  target1y = random(height);
+  target1x = random(w);
+  target1y = random(h);
   
-  target2x = random(width);
-  target2y = random(height);
+  target2x = random(w);
+  target2y = random(h);
   
   targetSize = r/2;
   
@@ -52,7 +54,7 @@ function setup() {
       })
   } else {
     // non ios 13 device
-    textSize(48);
+    textSize(w/10);
     // text("non ios 13 device", 100, 100);
     permissionGranted = true;
   }
@@ -80,14 +82,16 @@ function draw() {
   //scores  
   fill(255, 0, 0);
   push();
-  translate(width/7, score1y);
+  translate(w/7, score1y);
   rotate(PI);
+  textSize(w/5);
   text(score1, 0, 0);
   pop();
   
   fill(0, 0, 255);
   push();
-  translate(6*width/7, score2y);
+  translate(6*w/7, score2y);
+  textSize(w/5);
   text(score2, 0, 0);
   pop();  
   
@@ -106,13 +110,13 @@ function draw() {
   const dy = constrain(rotationX, -3, 3);
   c1x += dx*2;
   c1y += dy*2;
-  c1x = constrain(c1x, 0, width);
-  c1y = constrain(c1y, 0, height);
+  c1x = constrain(c1x, 0, w);
+  c1y = constrain(c1y, 0, h);
   
   c2x += dx*2;
   c2y += dy*2;
-  c2x = constrain(c2x, 0, width);
-  c2y = constrain(c2y, 0, height);
+  c2x = constrain(c2x, 0, w);
+  c2y = constrain(c2y, 0, h);
   
   //cx = mouseX;
   //cy = mouseY;
@@ -137,17 +141,24 @@ function reachedTarget(cirX, cirY, rad, tX, tY, tSize){
 
 function resetBall(team) {
   if (team == 1) {
-    c1x = width/2;
-    c1y = height/2
-    target1x = random(width);
-    target1y = random(height);
+    c1x = w/2;
+    c1y = h/2
+    target1x = random(w);
+    target1y = random(h);
     score1 ++;
   } else {
-    c2x = width/2;
-    c2y = height/2
-    target2x = random(width);
-    target2y = random(height);
+    c2x = w/2;
+    c2y = h/2
+    target2x = random(w);
+    target2y = random(h);
     score2 ++;
   }
+}
+
+window.onresize = function() {
+  // assigns new values for width and height variables
+  w = window.innerWidth;
+  h = window.innerHeight;  
+  canvas.size(w,h);
 }
 
